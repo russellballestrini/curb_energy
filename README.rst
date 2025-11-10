@@ -45,63 +45,92 @@ curb_energy requires Python 3.8 or later.
 Installation
 ============
 
-Basic Installation
-------------------
-
-Install the core library:
+From PyPI
+---------
 
 .. code-block:: bash
 
+    # Core library only
     pip install curb_energy
 
-With API Server
----------------
-
-Install with FastAPI server for REST API and web dashboard:
-
-.. code-block:: bash
-
+    # With API server
     pip install "curb_energy[server]"
 
-Complete Installation
----------------------
+    # Everything (includes dev tools)
+    pip install "curb_energy[all]"
 
-Install everything including development tools:
+From Source (Development)
+--------------------------
+
+Clone the repository and use the Makefile:
 
 .. code-block:: bash
 
-    pip install "curb_energy[all]"
+    git clone https://github.com/russellballestrini/curb_energy.git
+    cd curb_energy
+    make install-all    # Installs everything including dev tools
+    make test           # Run tests to verify installation
+
+Available Makefile targets:
+
+* ``make install`` - Core dependencies
+* ``make install-server`` - Server dependencies
+* ``make install-dev`` - Development dependencies
+* ``make install-all`` - Everything
+* ``make help`` - Show all available commands
 
 Quick Start with API Server
 ============================
 
-1. Set up authentication:
+1. **Get credentials** (see `Getting Credentials Guide <docs/GETTING_CREDENTIALS.md>`_):
+
+   You need two sets of credentials:
+
+   * Your Curb account username/password (you already have these)
+   * OAuth2 app credentials from Curb (request from support)
+
+   📖 **See** ``docs/GETTING_CREDENTIALS.md`` **for detailed instructions**
+
+2. **Set up environment:**
 
 .. code-block:: bash
 
+    # Clone and install (if not done)
+    git clone https://github.com/russellballestrini/curb_energy.git
+    cd curb_energy
+    make install-all
+
+    # Set credentials
     export CURB_USERNAME="your_username"
     export CURB_PASSWORD="your_password"
-    export CURB_CLIENT_TOKEN="your_client_token"
-    export CURB_CLIENT_SECRET="your_client_secret"
+    export CURB_CLIENT_TOKEN="your_client_token"        # from Curb
+    export CURB_CLIENT_SECRET="your_client_secret"      # from Curb
 
-.. note::
-
-    The CLIENT_TOKEN and CLIENT_SECRET are OAuth2 application credentials
-    that must be obtained from Curb. See ``docs/GETTING_CREDENTIALS.md``
-    for detailed instructions on how to request these from Curb support.
-
-2. Start the server:
+3. **Start the server:**
 
 .. code-block:: bash
 
-    curb-server
+    make server
+    # Server starts at http://localhost:8000
 
-3. Open your browser to http://localhost:8000 for the dashboard
+4. **Access the dashboard:**
 
-4. Access the API docs at http://localhost:8000/docs
+   * Dashboard: http://localhost:8000
+   * API Docs: http://localhost:8000/docs
+   * OpenAPI Schema: http://localhost:8000/openapi.json
+
+Other useful commands:
+
+.. code-block:: bash
+
+    make test              # Run tests
+    make test-coverage     # Run tests with coverage
+    make check             # Quality checks + tests
+    make help              # Show all commands
 
 See `SERVER_README.md`_ for detailed documentation on using the API server,
-LLM integration, and web dashboard.
+LLM integration, and web dashboard. See `MAKEFILE_QUICK_REFERENCE.md`_ for
+all available Makefile commands.
 
 
 Use Cases
@@ -127,3 +156,4 @@ curb_energy is offered under the `Apache License 2.0`_.
 .. _asyncio: https://docs.python.org/3/library/asyncio.html
 .. _aiohttp: http://aiohttp.readthedocs.io
 .. _SERVER_README.md: SERVER_README.md
+.. _MAKEFILE_QUICK_REFERENCE.md: MAKEFILE_QUICK_REFERENCE.md
