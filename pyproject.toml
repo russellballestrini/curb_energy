@@ -1,0 +1,101 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "curb_energy"
+version = "0.1.0"
+description = "A modern Python library for interacting with the Curb Energy API with FastAPI server and LLM tool calling support"
+readme = "README.rst"
+requires-python = ">=3.8"
+license = {text = "Apache-2.0"}
+authors = [
+    {name = "Gino Ledesma", email = "gledesma@gmail.com"},
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: Apache Software License",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Communications",
+    "Topic :: System :: Distributed Computing",
+    "Topic :: System :: Networking",
+    "Topic :: Home Automation",
+]
+keywords = ["curb", "energy", "monitoring", "api", "fastapi", "llm"]
+
+dependencies = [
+    "aiohttp>=3.9.0",
+    "certifi>=2023.0.0",
+    "aiomqtt>=2.0.0",  # Modern replacement for hbmqtt
+    "marshmallow>=3.20.0",
+    "pytz>=2023.3",
+    "sortedcontainers>=2.4.0",
+    "pydantic>=2.0.0",
+]
+
+[project.optional-dependencies]
+server = [
+    "fastapi>=0.104.0",
+    "uvicorn[standard]>=0.24.0",
+    "python-multipart>=0.0.6",
+]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.1.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.5.0",
+]
+docs = [
+    "sphinx>=7.0.0",
+    "sphinx-rtd-theme>=1.3.0",
+    "sphinx-autodoc-typehints>=1.24.0",
+]
+all = [
+    "curb_energy[server,dev,docs]",
+]
+
+[project.urls]
+Homepage = "https://github.com/russellballestrini/curb_energy"
+Documentation = "http://curb-energy.readthedocs.io/en/latest/"
+Repository = "https://github.com/russellballestrini/curb_energy"
+Issues = "https://github.com/russellballestrini/curb_energy/issues"
+
+[project.scripts]
+curb-server = "curb_energy.server:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.black]
+line-length = 100
+target-version = ['py38', 'py39', 'py310', 'py311', 'py312']
+
+[tool.ruff]
+line-length = 100
+target-version = "py38"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]

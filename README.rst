@@ -9,10 +9,19 @@ curb_energy
     :alt: Documentation Status
 
 
-A Python library to interact with the `Curb API`_ built on top of `asyncio`_
-and `aiohttp`_.
+A modern Python library to interact with the `Curb API`_ built on top of `asyncio`_
+and `aiohttp`_, with FastAPI server and LLM tool calling support.
 
 Documentation: http://curb-energy.readthedocs.io/en/latest/
+
+✨ New Features
+===============
+
+* 🚀 **FastAPI REST API Server** - Expose your energy data as a modern REST API
+* 🤖 **LLM Tool Calling** - Query your energy data conversationally using AI
+* 🌐 **Web Dashboard** - Visualize your energy usage in a responsive web interface
+* 📊 **Real-time Metrics** - Access your energy data programmatically
+* 🔌 **Easy Integration** - CORS-enabled API for embedding in web apps
 
 
 Disclaimer
@@ -30,22 +39,74 @@ aiohttp for handling streaming data.
 Requirements
 ============
 
-curb_energy requires Python 3.5 or later, mostly due to the async and type
-hint syntax used in the library.
+curb_energy requires Python 3.8 or later.
 
 
 Installation
 ============
 
-curb_energy can be installed using ``pip``, ``easy_install`` or ``setup.py``
+Basic Installation
+------------------
+
+Install the core library:
 
 .. code-block:: bash
 
     pip install curb_energy
 
-You may want to install the library in a `virtual environment <https://www
-.python.org/dev/peps/pep-0405/>`_ to test things out.
+With API Server
+---------------
 
+Install with FastAPI server for REST API and web dashboard:
+
+.. code-block:: bash
+
+    pip install "curb_energy[server]"
+
+Complete Installation
+---------------------
+
+Install everything including development tools:
+
+.. code-block:: bash
+
+    pip install "curb_energy[all]"
+
+Quick Start with API Server
+============================
+
+1. Set up authentication:
+
+.. code-block:: bash
+
+    export CURB_USERNAME="your_username"
+    export CURB_PASSWORD="your_password"
+    export CURB_CLIENT_TOKEN="your_client_token"
+    export CURB_CLIENT_SECRET="your_client_secret"
+
+2. Start the server:
+
+.. code-block:: bash
+
+    curb-server
+
+3. Open your browser to http://localhost:8000 for the dashboard
+
+4. Access the API docs at http://localhost:8000/docs
+
+See `SERVER_README.md`_ for detailed documentation on using the API server,
+LLM integration, and web dashboard.
+
+
+Use Cases
+=========
+
+* 📊 **Custom Dashboards** - Build your own energy monitoring dashboard
+* 🤖 **AI Integration** - Ask questions about your energy usage using LLMs
+* 📱 **Mobile Apps** - Create mobile apps with your energy data
+* 📈 **Analytics** - Analyze your energy consumption patterns
+* 🏠 **Home Automation** - Integrate with smart home systems
+* 💰 **Cost Tracking** - Monitor and optimize your electricity costs
 
 License
 =======
@@ -59,3 +120,4 @@ curb_energy is offered under the `Apache License 2.0`_.
 .. _HAL: http://stateless.co/hal_specification.html
 .. _asyncio: https://docs.python.org/3/library/asyncio.html
 .. _aiohttp: http://aiohttp.readthedocs.io
+.. _SERVER_README.md: SERVER_README.md
