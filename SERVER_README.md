@@ -25,7 +25,11 @@ export CURB_CLIENT_TOKEN="your_oauth_client_token"
 export CURB_CLIENT_SECRET="your_oauth_client_secret"
 ```
 
-> **Note:** You need to obtain OAuth client credentials from Curb. See [Curb API Authentication](http://docs.energycurb.com/authentication.html) for details.
+> **Note:** You need to obtain OAuth client credentials from Curb.
+>
+> **📖 See [docs/GETTING_CREDENTIALS.md](docs/GETTING_CREDENTIALS.md) for detailed instructions on getting these credentials.**
+>
+> Quick summary: Contact Curb support at http://energycurb.com/support/ to request OAuth2 application credentials for API access.
 
 ### Start the Server
 

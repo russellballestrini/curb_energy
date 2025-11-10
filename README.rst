@@ -84,6 +84,12 @@ Quick Start with API Server
     export CURB_CLIENT_TOKEN="your_client_token"
     export CURB_CLIENT_SECRET="your_client_secret"
 
+.. note::
+
+    The CLIENT_TOKEN and CLIENT_SECRET are OAuth2 application credentials
+    that must be obtained from Curb. See ``docs/GETTING_CREDENTIALS.md``
+    for detailed instructions on how to request these from Curb support.
+
 2. Start the server:
 
 .. code-block:: bash
